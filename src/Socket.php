@@ -7,6 +7,7 @@
  * @LastEditTime: 2023-07-05 22:40:17
  */
 declare (strict_types=1);
+
 namespace Eykj\WebSocketClient;
 
 use Hyperf\Di\Annotation\Inject;
