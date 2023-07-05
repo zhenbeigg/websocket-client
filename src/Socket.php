@@ -4,7 +4,7 @@
  * @author: 布尔
  * @name: websocket客户端操作类
  * @desc: 介绍
- * @LastEditTime: 2023-07-05 22:34:53
+ * @LastEditTime: 2023-07-05 22:40:17
  */
 declare (strict_types=1);
 namespace Eykj\WebSocketClient;
@@ -19,9 +19,7 @@ class Socket
     
     #[Inject]
     protected ClientFactory $clientFactory;
-
-    #[Inject]
-    protected Mqtt $Mqtt;
+    
     /**
      * @author: 布尔
      * @name: 推送socket信息
