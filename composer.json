@@ -1,0 +1,17 @@
+{
+    "name": "eykj/websocket-client",
+    "description": "一一科技websocket客户端",
+    "license": "MIT",
+    "keywords": [
+        "eykj",
+        "websocket-client"
+    ],
+    "require": {
+        "hyperf/websocket-client": "~3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eykj\\WebSocketClient\\": "src/"
+        }
+    }
+}
