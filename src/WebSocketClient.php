@@ -15,7 +15,7 @@ use Hyperf\WebSocketClient\ClientFactory;
 use Hyperf\WebSocketClient\Frame;
 use function Hyperf\Support\env;
 
-class Socket
+class WebSocketClient
 {
     
     #[Inject]
