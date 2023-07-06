@@ -13,10 +13,14 @@ namespace Eykj\WebSocketClient;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\WebSocketClient\ClientFactory;
 use Hyperf\WebSocketClient\Frame;
+use Eykj\MqttClient\MqttClient;
 use function Hyperf\Support\env;
 
 class WebSocketClient
 {
+    
+    #[Inject]
+    protected MqttClient $MqttClient;
     
     #[Inject]
     protected ClientFactory $clientFactory;
@@ -57,6 +61,10 @@ class WebSocketClient
      */
     public function post_device_send(array $param)
     {
+        /* 发送mqtt信息 */
+        if (env('MQTT_HOST')) {
+            $this->MqttClient->post_device_send($param);
+        }
         $to = 'YY2099_' . $param['deviceSn'];
         $data = ['func' => $param['func'], 'data' => $param['data'], 'errmsg' => $param['errmsg'], 'errcode' => $param['errcode']];
         $param = array("act" => $param['act'] ?? 'send', "data" => $data, "to" => $to);
