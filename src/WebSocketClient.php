@@ -4,13 +4,12 @@
  * @author: 布尔
  * @name: websocket客户端操作类
  * @desc: 介绍
- * @LastEditTime: 2023-07-05 22:40:17
+ * @LastEditTime: 2023-07-19 19:57:15
  */
 declare (strict_types=1);
 
 namespace Eykj\WebSocketClient;
 
-use Hyperf\Di\Annotation\Inject;
 use Hyperf\WebSocketClient\ClientFactory;
 use Hyperf\WebSocketClient\Frame;
 use Eykj\MqttClient\MqttClient;
@@ -20,13 +19,13 @@ class WebSocketClient
 {
     protected ?MqttClient $MqttClient;
 
-    protected ?ClientFactory $clientFactory;
+    protected ?ClientFactory $ClientFactory;
 
     // 通过设置参数为 nullable，表明该参数为一个可选参数
-    public function __construct(?MqttClient $MqttClient, ?ClientFactory $clientFactory)
+    public function __construct(?MqttClient $MqttClient, ?ClientFactory $ClientFactory)
     {
         $this->MqttClient = $MqttClient;
-        $this->ClientFactory = $clientFactory;
+        $this->ClientFactory = $ClientFactory;
     }
 
     /**
@@ -45,7 +44,7 @@ class WebSocketClient
         // 对端服务的地址，如没有提供 ws:// 或 wss:// 前缀，则默认补充 ws://
         $host = env('WEB_SOCKET_HOST');
         // 通过 ClientFactory 创建 Client 对象，创建出来的对象为短生命周期对象
-        $client = $this->clientFactory->create($host, $autoClose);
+        $client = $this->ClientFactory->create($host, $autoClose);
         // 向 WebSocket 服务端发送消息
         $json = json_encode($param, 320);
         $client->push($json);
