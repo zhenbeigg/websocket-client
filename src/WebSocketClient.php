@@ -18,13 +18,17 @@ use function Hyperf\Support\env;
 
 class WebSocketClient
 {
-    
-    #[Inject]
-    protected MqttClient $MqttClient;
-    
-    #[Inject]
-    protected ClientFactory $clientFactory;
-    
+    protected ?MqttClient $MqttClient;
+
+    protected ?ClientFactory $clientFactory;
+
+    // 通过设置参数为 nullable，表明该参数为一个可选参数
+    public function __construct(?MqttClient $MqttClient, ?ClientFactory $clientFactory)
+    {
+        $this->MqttClient = $MqttClient;
+        $this->ClientFactory = $clientFactory;
+    }
+
     /**
      * @author: 布尔
      * @name: 推送socket信息
